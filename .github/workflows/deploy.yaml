@@ -33,4 +33,4 @@ jobs:
       run: docker push $IMAGE_NAME
 
     - name: Deploy Docker image
-      run: gcloud run deploy ${{ secrets.GCP_APP_NAME }} --image $IMAGE_NAME --region europe-west1 --platform managed --set-env-vars "GYM_HOST=${{ secrets.GYM_HOST }}" --set-env-vars "USER_TOKEN=${{ secrets.USER_TOKEN }}" --set-env-vars "API_KEY=${{ secrets.API_KEY }}" --set-env-vars "NODE_ENV=production" --allow-unauthenticated
+      run: gcloud run deploy ${{ secrets.GCP_APP_NAME }} --image $IMAGE_NAME --region europe-west1 --platform managed --set-env-vars "PASSWORD=${{ secrets.PASSWORD }}" --set-env-vars "USERNAME=${{ secrets.USERNAME }}" --set-env-vars "API_KEY=${{ secrets.API_KEY }}" --set-env-vars "NODE_ENV=production" --allow-unauthenticated
