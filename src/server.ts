@@ -35,11 +35,19 @@ app.use(
 app.post('/api/track-time', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const apiKey = req.headers['x-api-key'];
+    const offDays: string[] = req.body.offDays;
     if (!apiKey || apiKey !== config.API_KEY) {
       throw unauthorizedError('Invalid API key');
     }
-    const auth = await authenticate();
-    await trackTime(auth.access_token);
+    if (!offDays) {
+      throw unauthorizedError('Error missing off days');
+    }
+    const currentDate = getFormattedDate();
+    const todaysIsOff = offDays.includes(currentDate);
+    if (!todaysIsOff) {
+      const auth = await authenticate();
+      await trackTime(auth.access_token);
+    }
     return res.json({
       status: 'success',
     });
