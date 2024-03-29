@@ -4,7 +4,7 @@ import { rateLimit } from 'express-rate-limit';
 import { handleHttpError, tagError } from 'error-handler-module';
 
 import logger from './utils/logger';
-import { unauthorizedError } from './utils/errors';
+import { badRequestError, unauthorizedError } from './utils/errors';
 import config from './config';
 import { authenticate, trackTime } from './services/woffu';
 
@@ -40,7 +40,7 @@ app.post('/api/track-time', async (req: Request, res: Response, next: NextFuncti
       throw unauthorizedError('Invalid API key');
     }
     if (!offDays) {
-      throw unauthorizedError('Error missing off days');
+      throw badRequestError('Error missing off days');
     }
     const currentDate = getFormattedDate();
     const todaysIsOff = offDays.includes(currentDate);
