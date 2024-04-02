@@ -34,7 +34,7 @@ export const trackTime = async (token: string) => {
     "timezoneOffset": -60
   });
   
-  let requestConfig = {
+  const requestConfig = {
     method: 'post',
     maxBodyLength: Infinity,
     url: config.TRACK_TIME,

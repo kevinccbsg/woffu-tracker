@@ -1,4 +1,4 @@
-const getFormattedDate = () => {
+export const getFormattedDate = () => {
   const today = new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based

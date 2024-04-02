@@ -7,6 +7,7 @@ import logger from './utils/logger';
 import { badRequestError, unauthorizedError } from './utils/errors';
 import config from './config';
 import { authenticate, trackTime } from './services/woffu';
+import { getFormattedDate } from './utils/date';
 
 const app = express();
 const port = process.env.PORT || 3000;
